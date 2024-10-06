@@ -1,12 +1,30 @@
-import { Input, Textarea } from "@chakra-ui/react";
+"use client"
 
-export default function AddTask(){
+import { Input, Textarea } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { getAllTodos } from "../utils/supabaseFunction";
+
+const AddTask=()=>{
+    
+    const [todos,setTodos]=useState<any>([]);
+
+    useEffect(()=>{
+        const getTodos=async()=>{
+            const todos =await getAllTodos();
+            setTodos(todos);
+            console.log(todos);
+        };
+        getTodos();
+    },[]);
+
     return(
+        <section>
+            <h3 className="text-2xl font-bold text-gray-700 py-5">TODO追加</h3>
         <form>
         <div className="grid w-full items-center gap-4 max-w-xl">
             <div className="flex flex-col space-y-1.5">
                 <label htmlFor="title">タイトル</label>
-                <Input id="title" placeholder="タイトルを入力" />
+                <Input type="text" placeholder="タイトルを入力" />
             </div>
             <div className="flex flex-col space-y-1.5">
                 <label htmlFor="description">内容</label>
@@ -16,5 +34,8 @@ export default function AddTask(){
             </div>
         </div>
     </form>
+    </section>
     )
 };
+
+export default AddTask;
