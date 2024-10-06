@@ -3,6 +3,7 @@
 import { Input, Textarea } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { getAllTodos } from "../utils/supabaseFunction";
+import TodoList from "./TodoList";
 
 const AddTask=()=>{
     
@@ -34,6 +35,7 @@ const AddTask=()=>{
             </div>
         </div>
     </form>
+    <TodoList todos={todos} />
     </section>
     )
 };
