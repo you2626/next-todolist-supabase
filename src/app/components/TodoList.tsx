@@ -28,7 +28,7 @@ const TodoList=(props:Props)=> {
                             </button>
                     </div>
                 </li>
-                ))};
+                ))}
             </ul>
             </div>
     )
