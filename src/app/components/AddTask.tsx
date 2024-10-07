@@ -21,9 +21,13 @@ const AddTask=()=>{
 
     const handleSubmit=async(e:any)=>{
         e.preventDefault();
-        console.log("a")
+
+        if(title === "") return;
 
         await addTodo(title);
+        let todos=await getAllTodos();
+        setTodos(todos);
+
         setTitle("");
     };
 
@@ -34,7 +38,11 @@ const AddTask=()=>{
         <div className="grid w-full items-center gap-4 max-w-xl">
             <div className="flex flex-col space-y-1.5">
                 <label htmlFor="title">タイトル</label>
-                <Input type="text" placeholder="タイトルを入力" onChange={(e)=>setTitle(e.target.value)} />
+                <Input 
+                type="text" 
+                placeholder="タイトルを入力"
+                onChange={(e)=>setTitle(e.target.value)}
+                value={title} />
             </div>
             <div className="flex flex-col space-y-1.5">
                 <label htmlFor="description">内容</label>
